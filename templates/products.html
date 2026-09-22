@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Products | NexaCart{% endblock %}
+{% block content %}
+<section class="page-head"><p class="eyebrow">EXPLORE</p><h1>All Products</h1><p>Find something great for every need.</p></section>
+<div class="filterbar">
+  <a class="{{'active' if not selected else ''}}" href="/products">All</a>
+  {% for c in categories %}<a class="{{'active' if selected==c else ''}}" href="/products?category={{c}}">{{c}}</a>{% endfor %}
+</div>
+<section class="section"><div class="grid">
+{% for p in products %}
+<article class="card">
+  <a href="/product/{{p.id}}"><img src="{{p.image}}" alt="{{p.name}}"></a>
+  <div class="card-body"><small class="tag">{{p.category}}</small><h3><a href="/product/{{p.id}}">{{p.name}}</a></h3>
+  <div class="rating">★ {{p.rating}} <span>({{p.reviews}})</span></div>
+  <p class="price"><strong>₹{{p.sale_price}}</strong> <del>₹{{p.price}}</del></p>
+  <form method="post" action="/cart/add"><input type="hidden" name="product_id" value="{{p.id}}"><button class="btn small">Add to Cart</button></form></div>
+</article>
+{% else %}<div class="empty"><h2>No products found</h2><p>Try another search or category.</p></div>{% endfor %}
+</div></section>
+{% endblock %}

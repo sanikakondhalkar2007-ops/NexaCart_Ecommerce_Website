@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Order Confirmed | NexaCart{% endblock %}
+{% block content %}
+<div class="success"><div class="success-icon">✓</div><p class="eyebrow">ORDER CONFIRMED</p><h1>Thank you for shopping!</h1><p>Your demo order <strong>#{{order_id}}</strong> has been placed successfully.</p><h2>Total: ₹{{total}}</h2><a class="btn" href="/products">Continue Shopping</a></div>
+{% endblock %}

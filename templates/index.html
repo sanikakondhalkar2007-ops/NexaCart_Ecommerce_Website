@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}NexaCart | Smart Shopping{% endblock %}
+{% block content %}
+<section class="hero">
+  <div>
+    <p class="eyebrow">THE SMARTER WAY TO SHOP</p>
+    <h1>Discover products<br><span>you'll love.</span></h1>
+    <p class="hero-text">Explore curated products, compare your choices and get smart recommendations — all in one place.</p>
+    <a class="btn" href="{{ url_for('products') }}">Shop Now →</a>
+  </div>
+  <div class="hero-card">
+    <div class="sale">🔥 FLASH SALE</div>
+    <div class="big-emoji">🎧</div>
+    <h3>Nova Wireless Headphones</h3>
+    <p><del>₹1,499</del> <strong>₹999</strong></p>
+    <small>Limited-time offer</small>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head"><h2>Shop by category</h2><a href="{{ url_for('products') }}">View all →</a></div>
+  <div class="categories">
+    <a href="/products?category=Electronics">⚡<b>Electronics</b><small>Gadgets & tech</small></a>
+    <a href="/products?category=Fashion">👟<b>Fashion</b><small>Style everyday</small></a>
+    <a href="/products?category=Home">🏠<b>Home</b><small>Make it yours</small></a>
+    <a href="/products?category=Accessories">🕶️<b>Accessories</b><small>Complete your look</small></a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head"><h2>Trending now</h2><a href="{{ url_for('products') }}">See all →</a></div>
+  <div class="grid">
+    {% for p in products %}
+    <article class="card">
+      <a href="/product/{{p.id}}"><img src="{{p.image}}" alt="{{p.name}}"></a>
+      <div class="card-body">
+        <small class="tag">{{p.category}}</small>
+        <h3><a href="/product/{{p.id}}">{{p.name}}</a></h3>
+        <div class="rating">★ {{p.rating}} <span>({{p.reviews}})</span></div>
+        <p class="price"><strong>₹{{p.sale_price}}</strong> <del>₹{{p.price}}</del></p>
+        <form method="post" action="/cart/add"><input type="hidden" name="product_id" value="{{p.id}}"><button class="btn small">Add to Cart</button></form>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="ai-box">
+  <div><span class="ai-icon">✦</span><h2>Nexa AI Shopping Assistant</h2><p>Tell us what you're looking for and we'll suggest products from our store.</p></div>
+  <form id="aiForm"><input id="aiInput" placeholder="e.g. headphones for gaming"><button class="btn">Get Suggestions</button></form>
+  <div id="aiResults"></div>
+</section>
+{% endblock %}

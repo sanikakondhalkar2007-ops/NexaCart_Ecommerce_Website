@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard | NexaCart{% endblock %}
+{% block content %}
+<section class="page-head"><p class="eyebrow">DEMO ADMIN</p><h1>Dashboard</h1><p>Manage products and view customer orders.</p></section>
+<section class="stats"><div><span>Products</span><b>{{products|length}}</b></div><div><span>Orders</span><b>{{orders|length}}</b></div><div><span>Revenue</span><b>₹{{orders|sum(attribute='total')}}</b></div></section>
+<section class="section"><div class="section-head"><h2>Recent Orders</h2></div><div class="table-card"><table><tr><th>ID</th><th>Customer</th><th>Total</th><th>Date</th></tr>{% for o in orders %}<tr><td>#{{o.id}}</td><td>{{o.customer}}</td><td>₹{{o.total}}</td><td>{{o.created_at}}</td></tr>{% else %}<tr><td colspan="4">No orders yet.</td></tr>{% endfor %}</table></div></section>
+{% endblock %}

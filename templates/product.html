@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{{product.name}} | NexaCart{% endblock %}
+{% block content %}
+<section class="product-detail">
+  <div class="product-image"><img src="{{product.image}}" alt="{{product.name}}"></div>
+  <div class="product-info"><small class="tag">{{product.category}}</small><h1>{{product.name}}</h1>
+  <div class="rating big">★ {{product.rating}} <span>{{product.reviews}} customer reviews</span></div>
+  <p class="price huge">₹{{product.sale_price}} <del>₹{{product.price}}</del></p>
+  <p class="desc">A carefully selected NexaCart product designed to deliver excellent value, quality and everyday usability.</p>
+  <ul class="features"><li>✓ Quality checked</li><li>✓ Easy returns</li><li>✓ Secure checkout</li></ul>
+  <form method="post" action="/cart/add"><input type="hidden" name="product_id" value="{{product.id}}"><button class="btn">🛒 Add to Cart</button></form>
+  </div>
+</section>
+<section class="section"><div class="section-head"><h2>You may also like</h2></div><div class="grid">
+{% for p in related %}<article class="card"><a href="/product/{{p.id}}"><img src="{{p.image}}"></a><div class="card-body"><small class="tag">{{p.category}}</small><h3>{{p.name}}</h3><p class="price"><strong>₹{{p.sale_price}}</strong></p></div></article>{% endfor %}
+</div></section>
+{% endblock %}

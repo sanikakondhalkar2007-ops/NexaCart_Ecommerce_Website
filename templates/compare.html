@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Compare | NexaCart{% endblock %}
+{% block content %}
+<section class="page-head"><p class="eyebrow">SMART CHOICE</p><h1>Product Comparison</h1><p>Compare products side by side before you buy.</p></section>
+<section class="compare-wrap"><table><thead><tr><th>Feature</th>{% for p in products %}<th><img src="{{p.image}}"><br>{{p.name}}</th>{% endfor %}</tr></thead>
+<tbody><tr><td>Category</td>{% for p in products %}<td>{{p.category}}</td>{% endfor %}</tr><tr><td>Price</td>{% for p in products %}<td><strong>₹{{p.sale_price}}</strong></td>{% endfor %}</tr><tr><td>Rating</td>{% for p in products %}<td>★ {{p.rating}}</td>{% endfor %}</tr><tr><td>Reviews</td>{% for p in products %}<td>{{p.reviews}}</td>{% endfor %}</tr></tbody></table></section>
+{% endblock %}

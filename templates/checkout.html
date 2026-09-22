@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Checkout | NexaCart{% endblock %}
+{% block content %}
+<section class="page-head"><p class="eyebrow">ALMOST THERE</p><h1>Checkout</h1></section>
+<section class="checkout">
+<form method="post" class="form-card"><h2>Delivery Details</h2><label>Full Name<input required name="customer"></label><label>Email<input required type="email" name="email"></label><label>Address<textarea required name="address" rows="4"></textarea></label><label>Payment Method<select><option>Cash on Delivery</option><option>Demo Card Payment</option></select></label><button class="btn full">Place Order ₹{{total}}</button></form>
+<div class="summary"><h2>Order Total</h2><h1>₹{{total}}</h1><p>✓ Free delivery</p><p>✓ Secure checkout</p><p>✓ Easy returns</p></div>
+</section>
+{% endblock %}

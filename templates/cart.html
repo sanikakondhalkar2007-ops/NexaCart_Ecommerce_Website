@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Cart | NexaCart{% endblock %}
+{% block content %}
+<section class="page-head"><p class="eyebrow">YOUR BAG</p><h1>Shopping Cart</h1></section>
+<section class="cart-wrap">
+{% if items %}
+<form method="post" action="/cart/update">
+{% for item in items %}
+<div class="cart-item"><img src="{{item.product.image}}"><div><h3>{{item.product.name}}</h3><p>₹{{item.product.sale_price}} each</p></div>
+<div><label>Qty</label><input class="qty" type="number" min="0" name="qty_{{item.product.id}}" value="{{item.qty}}"></div><strong>₹{{item.subtotal}}</strong>
+<a class="remove" href="/cart/remove/{{item.product.id}}">Remove</a></div>
+{% endfor %}
+<button class="btn secondary">Update Cart</button>
+</form>
+<div class="summary"><h2>Order Summary</h2><p>Subtotal <strong>₹{{total}}</strong></p><p>Delivery <strong>FREE</strong></p><hr><h3>Total <strong>₹{{total}}</strong></h3><a class="btn full" href="/checkout">Proceed to Checkout →</a></div>
+{% else %}<div class="empty"><div class="big-emoji">🛒</div><h2>Your cart is empty</h2><p>Add something you love.</p><a class="btn" href="/products">Start Shopping</a></div>{% endif %}
+</section>
+{% endblock %}
