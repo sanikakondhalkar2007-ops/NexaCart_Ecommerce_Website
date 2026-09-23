@@ -169,6 +169,9 @@ def compare():
     con.close()
     return render_template("compare.html", products=products)
 
+@app.route("/blog")
+def blog():
+    return render_template("blog.html")
 @app.route("/admin")
 def admin():
     con = db()
